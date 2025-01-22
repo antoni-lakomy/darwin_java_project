@@ -49,6 +49,28 @@ public class WorldTile {
     }
 
     /**
+     * Returns the plant on this tile.
+     *
+     * @return The {@link Plant} from this tile.
+     */
+    public Plant getPlant(){
+        return plant;
+    }
+
+    /**
+     * Returns the strongest animal on this tile.
+     * If there are no animals on this tile returns null.
+     *
+     * @return The first {@link Animal} on this tile.
+     */
+    public Animal getAnimal(){
+        if (animals.isEmpty()) return null;
+        sortAnimals();
+        return animals.getFirst();
+    }
+
+
+    /**
      * Adds an animal to the tile.
      *
      * @param animal {@link Animal} to be added to the map.
@@ -84,16 +106,6 @@ public class WorldTile {
         this.plant = plant;
     }
 
-    /**
-     * Removes the plant on the tile if not already empty.
-     *
-     * @return true - if there was a plant to remove, otherwise false
-     */
-    public boolean removePlant(){
-        if (this.plant == null) return false;
-        this.plant = null;
-        return true;
-    }
 
     /**
      * Sorts the animals on the tile using {@link AnimalComparator}.
@@ -111,7 +123,7 @@ public class WorldTile {
     /**
      * Removes the dead animals from this tile.
      *
-     * @return A list of the remove animals.
+     * @return A list of the removed animals.
      */
     public List<Animal> removeDeadAnimals(){
         sortAnimals();
@@ -137,6 +149,7 @@ public class WorldTile {
         if (animals.isEmpty()) return false;
         if (plant != null){
             animals.getFirst().addEnergy(plant.getEnergy());
+            animals.getFirst().addPlantsEaten();
             plant = null;
             return true;
         }

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            minHeight="730.0" minWidth="400.0"
+            fx:controller="agh.ics.oop.presenters.StartPresenter">
+    <padding><Insets top="10" bottom="10" right="10" left="10"/></padding>
+    <center>
+        <VBox fx:id="mainBox" alignment="BASELINE_CENTER">
+
+
+            <Label styleClass="categoryLabels" alignment="CENTER" textFill="black">
+                General
+            </Label>
+            <HBox styleClass="individualBoxes">
+                <Label>Seed:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="seedField"/>
+            </HBox>
+
+
+
+            <Label styleClass="categoryLabels" alignment="CENTER">
+                Map
+            </Label>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Height:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="mapHeightField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Width:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="mapWidthField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Type:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <ChoiceBox fx:id="mapTypeField"  value="Globe">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Globe"/>
+                            <String fx:value="Poles"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+            </HBox>
+
+
+
+            <Label styleClass="categoryLabels" alignment="CENTER">
+                Plants
+            </Label>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Start Number:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="plantStartNumberField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Energy:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="plantEnergyField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Growth:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="plantGrowthField"/>
+            </HBox>
+
+
+
+            <Label styleClass="categoryLabels" alignment="CENTER">
+                Animals
+            </Label>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Start Number:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="animalStartNumberField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Start Energy:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="animalStartEnergyField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Fed Threshold:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="animalFedThresholdField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Reproduction Cost:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="animalReproductionCostField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Genome Length:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="animalGenomeLengthField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Type:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <ChoiceBox fx:id="animalBehaviourTypeField"  value="Full Predisposition">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Full Predisposition"/>
+                            <String fx:value="Age is a Heavy Burden"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Min Mutation:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="animalMinMutationField"/>
+            </HBox>
+
+            <HBox styleClass="individualBoxes">
+                <Label>Max Mutation:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="animalMaxMutationField"/>
+            </HBox>
+
+            <HBox styleClass="categoryLabels" alignment="CENTER" spacing="3">
+                <Label>Save to csv:</Label>
+                <CheckBox fx:id="saveToCSV"/>
+            </HBox>
+            <Button onAction="#onSimulationStartClicked" text="Start" alignment="CENTER">
+            </Button>
+
+            <Label styleClass="categoryLabels" alignment="CENTER" textFill="black">
+                Configurations
+            </Label>
+            <HBox styleClass="individualBoxes">
+                <Label>Configuration File:</Label>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="saveFileName" promptText="Conf_Name"/>
+            </HBox>
+            <HBox styleClass="individualBoxes">
+                <Button onAction="#loadConfiguration" text="Load" alignment="CENTER">
+                </Button>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Button onAction="#saveConfiguration" text="Save" alignment="CENTER">
+                </Button>
+            </HBox>
+
+
+
+
+
+        </VBox>
+    </center>
+</BorderPane>

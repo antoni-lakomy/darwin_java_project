@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            minHeight="700.0" minWidth="800.0"
+            fx:controller="agh.ics.oop.presenters.SimulationPresenter">
+    <padding><Insets top="10" bottom="10" right="10" left="10"/></padding>
+    <center>
+        <GridPane fx:id="mapGrid" style="-fx-background-color: #25C332; -fx-margin: 0px;" gridLinesVisible="true" alignment="CENTER">
+        </GridPane>
+    </center>
+    <left>
+        <VBox alignment="CENTER_LEFT" style="-fx-border: 1px" >
+            <Button onAction="#pauseUnpauseSimulation" text="Change Pause" alignment="CENTER"/>
+            <Label styleClass="categoryLabels" text="General Information"/>
+            <Label fx:id="simulationDay" text="Day: 0"/>
+            <Label fx:id="aliveAnimals" text="Alive Animals: NaN"/>
+            <Label fx:id="deadAnimals" text="Dead Animals: NaN"/>
+            <Label fx:id="avgEnergy" text="Avg Energy: NaN"/>
+            <Label fx:id="avgLifespan" text="Avg Lifespan: NaN"/>
+            <Label fx:id="avgChildren" text="Avg Children: NaN"/>
+            <Label fx:id="mostPopularGenome" text="Most Popular Genome:\n NaN"/>
+            <Label fx:id="plantCount" text="Plant Count: NaN"/>
+            <Label fx:id="emptyTiles" text="Empty Tiles: NaN"/>
+            <Label styleClass="categoryLabels" text="Specific Animal Information"/>
+            <Label fx:id="animalGenome" text="Genome: N/A"/>
+            <Label fx:id="animalActiveGene" text="Active Part: N/A"/>
+            <Label fx:id="animalEnergy" text="Energy: N/A"/>
+            <Label fx:id="animalPlantsEaten" text="Plants Eaten: N/A"/>
+            <Label fx:id="animalChildren" text="Children: N/A"/>
+            <Label fx:id="animalDescendants" text="Descendants: N/A"/>
+            <Label fx:id="animalAge" text="Age: N/A"/>
+            <Label fx:id="animalDied" text="Died: N/A"/>
+            <Button fx:id="deselectButton" onMouseClicked="#deselectAnimal" text="Deselect" disable="true"/>
+        </VBox>
+    </left>
+</BorderPane>

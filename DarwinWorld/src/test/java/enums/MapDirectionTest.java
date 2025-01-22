@@ -1,6 +1,8 @@
 package enums;
 
 import agh.ics.oop.enums.MapDirection;
+import agh.ics.oop.organisms.Animal;
+import agh.ics.oop.records.Vector2d;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +23,6 @@ public class MapDirectionTest {
         MapDirection v6 = v0.rotate(5);
         MapDirection v7 = v0.rotate(6);
         MapDirection v8 = v0.rotate(7);
-
         MapDirection v9 = v0.rotate(8);
 
         //then
@@ -37,6 +38,15 @@ public class MapDirectionTest {
         assertEquals(MapDirection.NORTH,v9);
 
 
+    }
+
+    @Test
+    void rotateIntegrationTest() {
+        Animal animal = new Animal(new Vector2d(5,5));
+        animal.setOrientation(MapDirection.NORTH);
+        animal.rotate(4);
+
+        assertEquals(MapDirection.SOUTH, animal.getOrientation(), "Expected to rotate 180 degrees.");
     }
 
 }

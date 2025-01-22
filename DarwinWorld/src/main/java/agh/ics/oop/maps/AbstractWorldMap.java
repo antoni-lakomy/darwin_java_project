@@ -1,6 +1,5 @@
 package agh.ics.oop.maps;
 
-import agh.ics.oop.model.FullPredestination;
 import agh.ics.oop.model.GeneInterpreter;
 import agh.ics.oop.model.WorldTile;
 import agh.ics.oop.organisms.Animal;
@@ -9,19 +8,21 @@ import agh.ics.oop.organisms.Organism;
 import agh.ics.oop.organisms.Plant;
 import agh.ics.oop.records.Vector2d;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class AbstractWorldMap implements WorldMap {
-    protected final int width;
-    protected final int height;
-    protected final WorldTile[][] map;
+    protected int width;
+    protected int height;
+    protected WorldTile[][] map;
     protected final GeneInterpreter geneInterpreter;
+    protected int plantCount;
 
-    public AbstractWorldMap(int width, int height,GeneInterpreter geneInterpreter) {
+
+    public AbstractWorldMap(int width, int height, GeneInterpreter geneInterpreter) {
         this.width = width;
         this.height = height;
+        this.plantCount = 0;
         this.geneInterpreter = geneInterpreter;
         this.map = new WorldTile[width][height];
         for (int x = 0; x < width; x++){
@@ -30,6 +31,9 @@ public abstract class AbstractWorldMap implements WorldMap {
             }
         }
     }
+
+    @Override
+    public int getPlantCount(){ return plantCount; }
 
     @Override
     public boolean isFieldEmpty(Vector2d position) {
@@ -41,7 +45,16 @@ public abstract class AbstractWorldMap implements WorldMap {
         return map[position.x()][position.y()].getOrganism();
     }
 
-    //TODO - może obsługa postawienia tego samego zwierzaka wiele razy
+    @Override
+    public Animal getAnimalAt(Vector2d position) {
+        return map[position.x()][position.y()].getAnimal();
+    }
+
+    @Override
+    public Plant getPlantAt(Vector2d position) {
+        return map[position.x()][position.y()].getPlant();
+    }
+
     @Override
     public void addAnimal(Animal animal) {
         Vector2d poz = animal.getPosition();
@@ -58,6 +71,7 @@ public abstract class AbstractWorldMap implements WorldMap {
     public void addPlant(Plant plant) {
         Vector2d poz = plant.getPosition();
         map[poz.x()][poz.y()].addPlant(plant);
+        plantCount++;
     }
 
     public int getWidth() {
@@ -66,6 +80,17 @@ public abstract class AbstractWorldMap implements WorldMap {
 
     public int getHeight() {
         return height;
+    }
+
+    @Override
+    public int calculateEmptyTiles() {
+        int cnt = 0;
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+                if (map[x][y].isEmpty()) {cnt++;}
+            }
+        }
+        return cnt;
     }
 
     @Override
@@ -92,9 +117,10 @@ public abstract class AbstractWorldMap implements WorldMap {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
 
-                if (map[x][y].tryToConsumePlant())
-                    positions.addFirst(new Vector2d(x,y));
-
+                if (map[x][y].tryToConsumePlant()) {
+                    positions.addFirst(new Vector2d(x, y));
+                    plantCount--;
+                }
             }
         }
 
@@ -127,8 +153,35 @@ public abstract class AbstractWorldMap implements WorldMap {
         return deadAnimals;
     }
 
-//    Divides between children classes as basic map (Globe - kula ziemska) and Poles modifier (Bieguny)
-    public abstract void moveAnimal(Animal animal);
+
+
+
+
+    @Override
+    public void moveAnimal(Animal animal) {
+        int energyRequired = calculateEnergy(animal.getPosition().y());
+        Vector2d moveVector = animal.activateGene(geneInterpreter,energyRequired);
+        Vector2d oldPosition = animal.getPosition();
+        Vector2d newPosition;
+        if (!animal.isSkippingMove()) {
+            newPosition = animal.getPosition().add(moveVector);
+            newPosition = boundPosition(newPosition, animal);
+        } else {
+            newPosition = oldPosition;
+            animal.setSkippingMove(false);
+        }
+
+        if (!map[oldPosition.x()][oldPosition.y()].removeAnimal(animal))
+            throw new NullPointerException("Animal was not present on the map");
+
+        map[newPosition.x()][newPosition.y()].addAnimal(animal);
+        animal.setPosition(newPosition);
+    }
+
+    //  Divides between children classes as basic map (Globe - kula ziemska) and Poles modifier (Bieguny)
+    @Override
+    public abstract int calculateEnergy(int positionY);
+
 
 
 

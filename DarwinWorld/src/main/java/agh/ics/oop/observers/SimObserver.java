@@ -1,6 +1,6 @@
 package agh.ics.oop.observers;
 
-import agh.ics.oop.maps.WorldMap;
+import agh.ics.oop.simulation.Simulation;
 
 public interface SimObserver {
 
@@ -8,7 +8,7 @@ public interface SimObserver {
      * Invoked when a simulation this object observes
      * has finished its step and is ready to be displayed.
      *
-     * @param map The {@link WorldMap to display}
+     * @param simulation The {@link Simulation to display}
      */
-    void update(WorldMap map);
+    void update(Simulation simulation);
 }

@@ -1,0 +1,10 @@
+/*style.css*/
+
+
+.individualBoxes{
+    -fx-padding: 2px;
+}
+
+.categoryLabels{
+    -fx-padding: 10px;
+}

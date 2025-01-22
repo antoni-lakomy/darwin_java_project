@@ -11,7 +11,7 @@ import java.util.Comparator;
  */
 public class AnimalComparator implements Comparator<Animal> {
 
-    private AnimalComparator(){};
+    private AnimalComparator(){}
 
     private static volatile AnimalComparator instance;
 

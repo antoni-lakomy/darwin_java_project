@@ -4,7 +4,6 @@ import agh.ics.oop.enums.MapDirection;
 import agh.ics.oop.records.SimParams;
 import agh.ics.oop.records.Vector2d;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,10 +35,21 @@ public class AnimalBuilder {
         this.maxMutation = params.animalMaxMutation();
     }
 
+    public AnimalBuilder(){ //for testing purpose
+        this.rng = new Random(100);
+        this.genomeLength = 10;
+        this.startingEnergy = 100;
+        this.directions = 8;
+        this.reproductionCost = 10;
+        this.minMutation = 0;
+        this.maxMutation = 3;
+    }
+
+
     /**
      * Creates a new animal at a given position, with a given energy and genome.
      * Used mostly as an internal function, but is made available for testing purposes.
-     * It has no children and no parents and its age is set to 0.
+     * It has no children and no parents and its age and date of birth are set to 0.
      *
      * @param position The starting position of the new animal.
      * @param energy The starting energy of the animal.
@@ -59,6 +69,7 @@ public class AnimalBuilder {
 
         animal.energy = energy;
         animal.age = 0;
+        animal.dayBorn = 0;
 
         animal.currentGene = rng.nextInt(genomeLength);
         animal.genome = genome;
@@ -75,6 +86,7 @@ public class AnimalBuilder {
      * and has a random gene active. It also has no parents and no children.
      * Its starting energy and genome length is based on the parameters provided to this builder.
      * Its age is also set to 0.
+     * It is born on the day 0.
      *
      * @param position The starting position of the new animal.
      *
@@ -99,6 +111,7 @@ public class AnimalBuilder {
      * Its energy is drawn from its parents as specified.
      * It is turned in a random direction and has a random gene active.
      * It also has no children and its age is set to 0.
+     * Its date of birth is derived from its parents.
      *
      * @param parentStrong The stronger of the two parents.
      * @param parentWeak The weaker of the two parents.
@@ -139,6 +152,7 @@ public class AnimalBuilder {
         parentWeak.energy -= reproductionCost;
         parentStrong.children.add(animal);
         parentWeak.children.add(animal);
+        animal.dayBorn = parentStrong.dayBorn + parentStrong.age;
 
         animal.parents = List.of(parentStrong,parentWeak);
 

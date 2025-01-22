@@ -23,15 +23,28 @@ public interface WorldMap {
     boolean isFieldEmpty(Vector2d position);
 
     /**
-     * Gets the organism from the tile at a given position.
-     * Will throw an exception if the tile is not sorted beforehand;
+     * Gets the first organism from the tile at a given position.
      *
      * @param position The position to check.
-     * @return The organism at the given position>
-     *
-     * @throws IllegalStateException if the tile is not sorted beforehand.
+     * @return The organism at the given position
      */
     Organism getOrganismAt(Vector2d position);
+
+    /**
+     * Gets the strongest animal from the tile at a given position.
+     *
+     * @param position The position to check.
+     * @return The animal at the given position
+     */
+    Animal getAnimalAt(Vector2d position);
+
+    /**
+     * Gets the plant from the tile at a given position.
+     *
+     * @param position The position to check.
+     * @return The animal at the given position
+     */
+    Plant getPlantAt(Vector2d position);
 
     /**
      * Adds an animal to the map.
@@ -108,4 +121,11 @@ public interface WorldMap {
      * @return A list of the removed animals
      */
     List<Animal> removeDead();
+
+    int calculateEnergy(int PositionY);
+
+    int calculateEmptyTiles();
+
+    //Getter of plantCount attribute.
+    int getPlantCount();
 }

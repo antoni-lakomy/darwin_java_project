@@ -1,6 +1,9 @@
 package agh.ics.oop.planters;
 
 import agh.ics.oop.maps.WorldMap;
+import agh.ics.oop.records.Vector2d;
+
+import java.util.List;
 
 public interface Planter {
 
@@ -18,4 +21,7 @@ public interface Planter {
      *
      */
     void consume();
+
+    // Getter of preferredTiles attribute.
+    List<Vector2d> getPreferredTiles();
 }
