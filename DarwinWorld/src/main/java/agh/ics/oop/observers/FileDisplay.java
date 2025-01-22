@@ -12,12 +12,19 @@ import java.util.Date;
 
 
 /**
- * Writes 
+ * Writes the observed simulation statistics to a new csv file
+ * that is created alongside this object. Its name is derived from
+ * the current system time at the time of creation.
  */
 public class FileDisplay implements SimObserver {
 
     private String fileName;
 
+    /**
+     * Creates a new {@link FileDisplay} object alongside it's csv file.
+     *
+     * @throws IOException if the file cannot be created.
+     */
     public FileDisplay() throws IOException {
         this.fileName = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         this.fileName = this.fileName + ".csv";

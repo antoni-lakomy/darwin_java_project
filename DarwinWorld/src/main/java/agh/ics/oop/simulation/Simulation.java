@@ -8,6 +8,11 @@ import agh.ics.oop.planters.Planter;
 
 import java.util.*;
 
+
+/**
+ * Main simulation class, contains most of the logic required for it to function
+ * It can only be created through a builder.
+ */
 public class Simulation implements Runnable {
 
     protected WorldMap map;
