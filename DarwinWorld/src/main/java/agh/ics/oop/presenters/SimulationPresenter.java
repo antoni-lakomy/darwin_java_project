@@ -33,7 +33,7 @@ public class SimulationPresenter implements SimObserver {
 
     private DisplayCell selectedCell;
 
-    private boolean paused = true;
+    private boolean paused = false;
 
     @FXML
     GridPane mapGrid;
@@ -139,6 +139,8 @@ public class SimulationPresenter implements SimObserver {
 
     public synchronized void deselectAnimal(){
         selectedAnimal = null;
+        selectedCell.removeAnimalHighlight();
+        selectedCell = null;
         animalGenome.setText("Genome: N/A");
         animalActiveGene.setText("Active Part: N/A");
         animalEnergy.setText("Energy: N/A");

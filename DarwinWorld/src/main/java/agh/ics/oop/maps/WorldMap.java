@@ -122,10 +122,25 @@ public interface WorldMap {
      */
     List<Animal> removeDead();
 
-    int calculateEnergy(int PositionY);
+    /**
+     * Calculates the energy needed for the animal to move from it's Y position.
+     *
+     * @param positionY The y position to be considered
+     * @return The required energy.
+     */
+    int calculateEnergy(int positionY);
 
+    /**
+     * Calculate the number of empty tiles on this map.
+     *
+     * @return The number of empty tiles.
+     */
     int calculateEmptyTiles();
 
-    //Getter of plantCount attribute.
+    /**
+     * Gets the number of plants present on this map.
+     *
+     * @return The number of plants on this map.
+     */
     int getPlantCount();
 }

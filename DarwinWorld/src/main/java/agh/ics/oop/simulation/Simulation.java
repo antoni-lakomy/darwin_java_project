@@ -36,9 +36,9 @@ public class Simulation implements Runnable {
 
     private boolean shutDown = false;
 
-    private boolean paused = true;
+    private boolean paused = false;
 
-    private float timePerStep = 0.5f;
+    private float timePerStep = 0.4f;
 
 
     //Precalculated statistics
@@ -179,6 +179,7 @@ public class Simulation implements Runnable {
         return (float)totalChildren / aliveAnimals.size();
     }
 
+
     public List<Animal> getAnimalsWithGivenGenome(Byte[] genome) {
         List<Animal> animalsWithGenome = new ArrayList<>();
         for (Animal animal : aliveAnimals) {
@@ -189,6 +190,10 @@ public class Simulation implements Runnable {
         return animalsWithGenome;
     }
 
+    /**
+     * Precalculates the simulation statistics so that the UI portion
+     * can get them in a swift manner thus avoiding exceptions on the UI thread.
+     */
     public void updateStats() {
         plantCount = map.getPlantCount();
         emptyTiles = map.calculateEmptyTiles();
@@ -198,11 +203,6 @@ public class Simulation implements Runnable {
         avgChildren = calcAvgChildren();
     }
 
-    public void visualStats() {
-        this.getAnimalsWithGivenGenome(mostPopularGenome);
-        planter.getPreferredTiles();
-    }
-
     private void simUpdated(){
         for (SimObserver observer : observers){
             observer.update(this);
@@ -210,7 +210,9 @@ public class Simulation implements Runnable {
     }
 
 
-
+    /**
+     * Performs a single step of the simulation.
+     */
     public void simulationStep(){
         //1
         List<Animal> deadThisStep = map.removeDead();

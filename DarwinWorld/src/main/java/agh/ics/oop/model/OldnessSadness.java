@@ -11,8 +11,6 @@ import java.util.Random;
  * it is being changed back to the {@false} at the end of the turn.
  * Eventually animal finishes turn with pointer at the next gene and energy reduced by potential moving cost even if it didn't actually move.
  */
-
-
 public class OldnessSadness implements  GeneInterpreter {
 
     @Override

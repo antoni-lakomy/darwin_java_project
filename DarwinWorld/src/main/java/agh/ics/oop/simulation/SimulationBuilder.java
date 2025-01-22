@@ -20,6 +20,15 @@ import java.util.Random;
 
 public final class SimulationBuilder {
 
+
+    /**
+     * Builds a new {@link  Simulation} based on provided parameters.
+     *
+     *
+     * @param params The {@link SimParams} object containing the parameters
+     *               of the desired simulation.
+     * @return A new {@link Simulation} object.
+     */
     public static Simulation build(SimParams params){
         Simulation sim = new Simulation();
 

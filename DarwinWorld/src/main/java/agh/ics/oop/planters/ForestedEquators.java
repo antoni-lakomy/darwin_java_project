@@ -9,6 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The default Planter where the preferred plant positions
+ * are located between equators.
+ */
 public class ForestedEquators implements Planter{
 
     private final WorldMap map;

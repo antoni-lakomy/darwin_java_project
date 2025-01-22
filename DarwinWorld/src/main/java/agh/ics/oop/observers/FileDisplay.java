@@ -10,6 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
+
+/**
+ * Writes 
+ */
 public class FileDisplay implements SimObserver {
 
     private String fileName;
