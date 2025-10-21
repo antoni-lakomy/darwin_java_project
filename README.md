@@ -4,6 +4,15 @@ Collaborative project for Object Oriented Programing Course at AGH University of
 ## Authors:
 Antoni Łakomy, Bartłomiej Kaczyński
 
+## Project Description
+Darwin World is a simulation-based project where an evolving world of animals and plants unfolds over time. This project creates a virtual ecosystem where herbivorous animals roam, seek food, and reproduce. The simulation runs on a grid-based map consisting of steppes and jungles, with plants growing and animals adapting over time based on their genetic code. Key components include:
+
+- Herbivorous animals that consume plants, move, and reproduce
+- Genetic algorithms determining animal behavior and evolution
+- Configurable simulation parameters (e.g., energy levels, reproduction rules)
+- An interactive visualization of the evolving ecosystem
+- For a more detailed description, refer to the [instructions](https://github.com/Soamid/obiektowe-lab/blob/proj-2024/proj/Readme.md).
+
 ## How to run the simulation?
 
 - Clone repo into your PC
