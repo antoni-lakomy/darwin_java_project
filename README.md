@@ -31,3 +31,10 @@ Darwin World is a simulation-based project where an evolving world of animals an
 - Then you can hit `change pause` again and simulation will resume, your selected animal stats will still be followed. You can deselect it anytime by clicking `deselect` button
 - Another feature - while the simulation is paused, you can see the yellow highlight in the middle part of map - that means those tiles are being preffered by planter, so there are higher chances that next turn plant will grow on one of those tiles in comparison to non-highlighted ones
 - Also some tiles during the pause change their backgroud to red, meaing that an animal with the most popular genome stands on it 
+
+## Tech Stack
+The project is built using:
+
+- Java - Core programming language
+- JavaFX - Graphical User Interface framework
+- Gradle - Build automation tool for project management
